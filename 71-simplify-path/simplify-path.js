@@ -1,0 +1,20 @@
+/**
+ * @param {string} path
+ * @return {string}
+ */
+var simplifyPath = function(path) {
+        let Stack = [];
+       let  pathtoprocess = path.split('/');
+
+         for(let path of pathtoprocess){
+          if(path ==='.'|| path===''){
+              continue;
+          }
+          if(path==='..'){
+            Stack.pop();
+            continue;
+          }
+          Stack.push(path)
+         }                            
+         return '/' + Stack.join('/');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+};
