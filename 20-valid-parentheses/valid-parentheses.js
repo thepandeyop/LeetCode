@@ -4,23 +4,20 @@
  */
 var isValid = function(s) {
     let stack = [];
-    let para ='() {} []';
-    let i =0;
+    let para = { '(': ')', '{': '}', '[': ']' };
 
-    while(i<s.length){
-        stack.push(s[i]);
-        i++;
-
-        let open = stack[stack.length-2];
-        let close = stack[stack.length-1];
-
-        let final = open + close;
-        if(   para.includes(final)){
-stack.pop();
-stack.pop();
-
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i];
+        
+        if (para[char]) {
+            stack.push(char);
+        } else {
+            let lastOpen = stack.pop();
+            if (para[lastOpen] !== char) {
+                return false;
+            }
         }
- 
-    } 
-return  stack.length===0;
+    }
+
+    return stack.length === 0;
 };
