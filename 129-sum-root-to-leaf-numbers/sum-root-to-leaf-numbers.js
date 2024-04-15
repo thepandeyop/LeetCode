@@ -10,17 +10,12 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumNumbers = function(root) {
-
-  return helper(root,0);
+var sumNumbers = function(root, isRoot=true) {
+    if(!root) return [];
+    const res = [];
+    sumNumbers(root.left, false).forEach(item=>res.push(root.val+''+item));
+    sumNumbers(root.right, false).forEach(item=>res.push(root.val+''+item));
+    if(!res.length) res.push(root.val);
+    
+    return isRoot? res.map(Number).reduce((a,c)=>a+c, 0) : res;
 };
- 
-    function helper(root, sum){
-        if(!root) return false;
-         sum = sum * 10 + root.val;
-        if(root.left === null && root.right===null){
-            return sum;
-            
-        }
-      return  helper(root.left,sum) + helper(root.right,sum);
-    }
