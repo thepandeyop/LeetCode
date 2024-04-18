@@ -11,19 +11,15 @@
  * @return {number}
  */
 var diameterOfBinaryTree = function(root) {
-  if(!root) return null;
-    
-    let max =0;
-    height(root);
-    return max;
-    
-    function height(root){
-        if(!root)return null;
-        
-        let rl = height(root.left);
-        let rr = height(root.right);
-        
-        max = Math.max(max, rl+rr);
-        return Math.max(rl,rr) + 1;
-    }
-}
+  if (!root) return null;
+  let max = 0;
+  getHeight(root);
+  return max;
+  function getHeight(root) {
+    if (!root) return 0; // height is defined to be the number of nodes in the path in this particular question instead of the number of edges
+    let leftHeight = getHeight(root.left);
+    let rightHeight = getHeight(root.right);
+    max = Math.max(max, leftHeight + rightHeight);
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+}; 
