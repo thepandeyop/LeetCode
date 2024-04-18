@@ -10,22 +10,17 @@
  * @param {TreeNode} root
  * @return {number}
  */
-
-
 var maxDepth = function(root) {
-    // base case 
-    if(root ===null) {
-        return 0; 
-    }
-    
-      let ldepth = maxDepth(root.left);
-    let rdepth = maxDepth(root.right);
-    
-    if(ldepth> rdepth){
-        return (ldepth + 1);
-    }
-    else {
-       return (rdepth + 1);  
-    }
-   
+    var depth = 0;
+    return getDepth(root, depth);
 };
+
+function getDepth(node, depth){
+
+	if(node){
+			depth++;
+			return Math.max(getDepth(node.left, depth), getDepth(node.right, depth));
+	} else {
+			return depth;
+	}
+}
