@@ -1,26 +1,28 @@
-
-// Function to check if a binary tree is balanced
-function isBalanced(root) {
-    // If the tree is empty, it's balanced
-    if (root === null) 
-        return true;
-    
-    // Check if the difference in heights of left and right subtrees is <= 1,
-    // and recursively check left and right subtrees for balance
-    return Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1 &&
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function(root) {
+    if(root===null) return true;
+     return Math.abs(helper(root.left) - helper(root.right)) <= 1 &&
         isBalanced(root.left) && isBalanced(root.right);
-}
-
-// Function to get the height of a node in the binary tree
-function getHeight(root) {
-    // If the node is null, return 0
-    if (root === null) 
-        return 0;
+};
+var helper = function(root) {
+    if(root===null) return null;
     
-    // Recursively calculate the height of the left and right subtrees
-    const leftHeight = getHeight(root.left);
-    const rightHeight = getHeight(root.right);
+    let lh = helper(root.left);
+    let rh = helper(root.right);
     
-    // Return the maximum height of the left and right subtrees, plus 1 (for the current node)
-    return Math.max(leftHeight, rightHeight) + 1;
+    if(lh >rh ) return lh+1;
+    else{
+       return  rh+1;
+    }
 }
