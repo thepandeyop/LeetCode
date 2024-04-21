@@ -11,19 +11,16 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-
-
 var buildTree = function(preorder, inorder) {
-  if(!preorder.length) return null;
-  
-  const rootvalue = preorder.shift();
-  
-  const index = inorder.indexOf(rootvalue);
-  
-  let root = new TreeNode(rootvalue);
-  
-  root.left=buildTree(preorder.slice(0,index), inorder.slice(0, index));
-  root.right=buildTree(preorder.slice(index),inorder.slice(index+1))
-   
-  return root;
+    if (inorder.length) {
+        const indexValue = preorder.shift()
+        const indexRoot = inorder.indexOf(indexValue)
+
+        let root = new TreeNode(indexValue)
+        root.left = buildTree(preorder, inorder.slice(0, indexRoot))
+        root.right = buildTree(preorder, inorder.slice(indexRoot + 1))
+        
+        return root
+    }
+    return null
 };
