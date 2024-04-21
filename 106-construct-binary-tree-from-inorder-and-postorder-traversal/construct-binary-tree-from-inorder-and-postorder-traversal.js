@@ -1,21 +1,24 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @return {TreeNode}
+ */
 var buildTree = function(inorder, postorder) {
-  const len = postorder.length
-  if (!len) return null
-
-  const rootIndex = len - 1
-  const rootValue = postorder[rootIndex]
-  let i = rootIndex
-  while (inorder[i] !== rootValue) {
-    i--
-  }
-
-  const node = new TreeNode(rootValue)
-  if (i) {
-    node.left = buildTree(inorder.slice(0, i), postorder.slice(0, i))
-  }
-  if (i < rootIndex) {
-    node.right = buildTree(inorder.slice(i + 1), postorder.slice(i, rootIndex))
-  }
-  
-  return node
+    if (!inorder.length) return null;
+    
+    const root = new TreeNode(postorder.pop());
+    const dividepoint = inorder.indexOf(root.val);
+    
+    root.right = buildTree(inorder.slice(dividepoint + 1), postorder);
+    root.left = buildTree(inorder.slice(0, dividepoint), postorder);
+   
+    return root;
 };
