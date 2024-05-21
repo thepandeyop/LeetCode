@@ -1,3 +1,7 @@
+/**
+ * @param {character[][]} matrix
+ * @return {number}
+ */
 var maximalRectangle = function(matrix) {
     if(matrix.length === 0) {
         return 0;
