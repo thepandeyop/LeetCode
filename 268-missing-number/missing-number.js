@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+// using bit
 var missingNumber = function(nums) {
    
   let n = nums.length;
