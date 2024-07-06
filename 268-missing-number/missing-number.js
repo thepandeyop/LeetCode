@@ -6,8 +6,8 @@ var missingNumber = function(nums) {
    
   let n = nums.length;
     for(let i =0;i<nums.length;i++){
-        const xor = i^nums[i];
-         n = n^xor;
+        n ^= i^nums[i];
+         
     }
    
     return n;
